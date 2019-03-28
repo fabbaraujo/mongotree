@@ -1,0 +1,14 @@
+/home/cpd/PREFEITURA/mongotree/bin/Debug/netcoreapp2.1/mongotree.deps.json
+/home/cpd/PREFEITURA/mongotree/bin/Debug/netcoreapp2.1/mongotree.runtimeconfig.json
+/home/cpd/PREFEITURA/mongotree/bin/Debug/netcoreapp2.1/mongotree.runtimeconfig.dev.json
+/home/cpd/PREFEITURA/mongotree/bin/Debug/netcoreapp2.1/mongotree.dll
+/home/cpd/PREFEITURA/mongotree/bin/Debug/netcoreapp2.1/mongotree.pdb
+/home/cpd/PREFEITURA/mongotree/obj/Debug/netcoreapp2.1/mongotree.csprojAssemblyReference.cache
+/home/cpd/PREFEITURA/mongotree/obj/Debug/netcoreapp2.1/mongotree.csproj.CoreCompileInputs.cache
+/home/cpd/PREFEITURA/mongotree/obj/Debug/netcoreapp2.1/mongotree.RazorAssemblyInfo.cache
+/home/cpd/PREFEITURA/mongotree/obj/Debug/netcoreapp2.1/mongotree.RazorAssemblyInfo.cs
+/home/cpd/PREFEITURA/mongotree/obj/Debug/netcoreapp2.1/mongotree.AssemblyInfoInputs.cache
+/home/cpd/PREFEITURA/mongotree/obj/Debug/netcoreapp2.1/mongotree.AssemblyInfo.cs
+/home/cpd/PREFEITURA/mongotree/obj/Debug/netcoreapp2.1/mongotree.RazorTargetAssemblyInfo.cache
+/home/cpd/PREFEITURA/mongotree/obj/Debug/netcoreapp2.1/mongotree.dll
+/home/cpd/PREFEITURA/mongotree/obj/Debug/netcoreapp2.1/mongotree.pdb

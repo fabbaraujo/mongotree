@@ -39,7 +39,7 @@ namespace mongotree.Controllers
         {
             _unidadeDAO.Create(unidade);
 
-            return CreatedAtRoute("GetUnidade", new { id = unidade.Id.ToString() }, unidade);
+            return Ok();
         }
 
         [HttpPut("{id:length(24)}")]

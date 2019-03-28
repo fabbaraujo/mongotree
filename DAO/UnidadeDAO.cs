@@ -33,6 +33,13 @@ namespace mongotree.DAO
             return unidade;
         }
 
+        public Unidade AdicionarNo(string pai, Unidade unidade)
+        {
+            var encontrado = _unidades.Find<Unidade>(u => u.Nome == pai).FirstOrDefault();
+            //_unidades.InsertOne(unidade);
+            return unidade;
+        }
+
         public void Update(string id, Unidade unidadeIn)
         {
             _unidades.ReplaceOne(unidade => unidade.Id == id, unidadeIn);

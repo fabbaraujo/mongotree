@@ -7,7 +7,6 @@ namespace mongotree.Models
     public class Unidade
     {
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
         [BsonElement("Nome")]
