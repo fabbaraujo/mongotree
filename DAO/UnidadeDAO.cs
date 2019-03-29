@@ -38,7 +38,14 @@ namespace mongotree.DAO
                 Posicao = novaPosicao
             };
             
-            _unidades.InsertOne(novaUnidade);
+            _unidades.InsertOne(novaUnidade);          
+        }
+
+        public void RemoveNo(){
+
+        }
+
+        public void UpdateNo(){
             
         }
     }
