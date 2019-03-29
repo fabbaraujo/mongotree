@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using mongotree.Models;
 using mongotree.DAO;
 using Microsoft.AspNetCore.Mvc;
+using mongotree.DTO;
 
 namespace mongotree.Controllers
 {
@@ -21,55 +22,13 @@ namespace mongotree.Controllers
             return _unidadeDAO.Get();
         }
 
-        [HttpGet("{id:length(24)}", Name = "GetUnidade")]
-        public ActionResult<Unidade> Get(string id)
+        [HttpPost("adicionarNo")]
+        public ActionResult<Unidade> AdicionarNo(UnidadeDTO unidade)
         {
-            var unidade = _unidadeDAO.Get(id);
-
-            if (unidade == null)
-            {
-                return NotFound();
-            }
-
-            return unidade;
-        }
-
-        [HttpPost]
-        public ActionResult<Unidade> Create(Unidade unidade)
-        {
-            _unidadeDAO.Create(unidade);
+            
+            _unidadeDAO.AdicionarNo(unidade);
 
             return Ok();
-        }
-
-        [HttpPut("{id:length(24)}")]
-        public IActionResult Update(string id, Unidade unidadeIn)
-        {
-            var unidade = _unidadeDAO.Get(id);
-
-            if (unidade == null)
-            {
-                return NotFound();
-            }
-
-            _unidadeDAO.Update(id, unidadeIn);
-
-            return NoContent();
-        }
-
-        [HttpDelete("{id:length(24)}")]
-        public IActionResult Delete(string id)
-        {
-            var unidade = _unidadeDAO.Get(id);
-
-            if (unidade == null)
-            {
-                return NotFound();
-            }
-
-            _unidadeDAO.Remove(unidade.Id);
-
-            return NoContent();
         }
     }
 }

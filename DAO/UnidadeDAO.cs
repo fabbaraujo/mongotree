@@ -3,6 +3,7 @@ using System.Linq;
 using mongotree.Models;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
+using mongotree.DTO;
 
 namespace mongotree.DAO
 {
@@ -22,32 +23,23 @@ namespace mongotree.DAO
             return _unidades.Find(unidade => true).ToList();
         }
 
-        public Unidade Get(string id)
+        public void AdicionarNo(UnidadeDTO unidade)
         {
-            return _unidades.Find<Unidade>(unidade => unidade.Id == id).FirstOrDefault();
-        }
+            var elementoPaiFilho = _unidades.Find(u => u.Filho == unidade.Pai).ToList();
 
-        public Unidade Create(Unidade unidade)
-        {
-            _unidades.InsertOne(unidade);
-            return unidade;
-        }
+            var quantidadeElementosPaiFilho = _unidades.Find(u => u.Pai == unidade.Pai).CountDocuments();
 
-        public Unidade AdicionarNo(string pai, Unidade unidade)
-        {
-            var encontrado = _unidades.Find<Unidade>(u => u.Nome == pai).FirstOrDefault();
-            //_unidades.InsertOne(unidade);
-            return unidade;
-        }
+            string novaPosicao = elementoPaiFilho.ElementAt(0).Posicao+"-"+(quantidadeElementosPaiFilho+1);
 
-        public void Update(string id, Unidade unidadeIn)
-        {
-            _unidades.ReplaceOne(unidade => unidade.Id == id, unidadeIn);
-        }
-
-        public void Remove(string id)
-        {
-            _unidades.DeleteOne(unidade => unidade.Id == id);
+            Unidade novaUnidade = new Unidade{
+                Id = unidade.Id,
+                Pai = unidade.Pai,
+                Filho = unidade.Filho,
+                Posicao = novaPosicao
+            };
+            
+            _unidades.InsertOne(novaUnidade);
+            
         }
     }
 }

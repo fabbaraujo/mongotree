@@ -7,12 +7,16 @@ namespace mongotree.Models
     public class Unidade
     {
         [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
-        [BsonElement("Nome")]
-        public string Nome { get; set; }
+        [BsonElement("Pai")]
+        public string Pai { get; set; }
 
-        [BsonElement("children")]
-        public List<Unidade> children {get; set;}
+        [BsonElement("Filho")]
+        public string Filho { get; set; }
+
+        [BsonElement("Posicao")]
+        public string Posicao { get; set; }
     }
 }
