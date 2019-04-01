@@ -9,5 +9,8 @@ namespace mongotree.DTO
         public string Pai {get; set;}
         public string Filho {get; set;}
         public string Posicao { get; set; }
+
+        public string NovoPai {get; set;}
+        public string IdNovoPai {get; set;}
     }
 }

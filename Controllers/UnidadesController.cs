@@ -35,6 +35,9 @@ namespace mongotree.Controllers
         public IActionResult Update(string id, Unidade unidadeNovo)
         {//ENVIA SÓ O FILHO NO JSON BODY
         //VALIDAR NA BLL SOBRE O PRIMEIRO NÓ - PREFEITURA
+        /*
+            "Filho": "Diretoria de Urbanismo"
+         */
             var unidade = _unidadeDAO.Get(id);
 
             if (unidade == null)
@@ -43,6 +46,30 @@ namespace mongotree.Controllers
             }
 
             _unidadeDAO.UpdateNo(id, unidadeNovo, unidade);
+
+            return NoContent();
+        }
+
+        [HttpPut("moverNo/{id}")]
+        public IActionResult MoverNo(string id, UnidadeDTO unidadePosicaoNovo)
+        {//ENVIA O FILHO E NOVO PAI NO JSON BODY
+        //VALIDAR NA BLL SOBRE O PRIMEIRO NÓ - PREFEITURA
+        //VALIDAR NA BLL SOBRE MOVER ELE PARA ELE MESMO E PARA OS FILHOS
+
+        /* {
+            "Filho": "Diretoria de Urbanismo",
+            "NovoPai": "Secretaria de Administração",
+            "IdNovoPai":"5c9e5cb5e8ee2a515940f14b"
+        } */
+
+            var unidadePosicaoAntigo = _unidadeDAO.Get(id);
+
+            if (unidadePosicaoAntigo == null)
+            {
+                return NotFound();
+            }
+
+            _unidadeDAO.MoverNo(id, unidadePosicaoNovo, unidadePosicaoAntigo);
 
             return NoContent();
         }

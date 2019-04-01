@@ -46,6 +46,36 @@ namespace mongotree.DAO
             _unidades.InsertOne(novaUnidade);          
         }
 
+        public void MoverNo(string id, UnidadeDTO unidadePosicaoNovo, Unidade unidadePosicaoAntigo){
+            var unidadesUpd = _unidades.Find(u => u.Pai == unidadePosicaoAntigo.Filho).ToList();
+            var infoNovoPai = _unidades.Find(u => u.Id == unidadePosicaoNovo.IdNovoPai).ToList();
+            var quantidadeElementosNovoPai = _unidades.Find(u => u.Pai == unidadePosicaoNovo.NovoPai).CountDocuments();
+
+            string novaPosicao = infoNovoPai.ElementAt(0).Posicao+"-"+(quantidadeElementosNovoPai+1);
+
+             Unidade objetoMoverNovo = new Unidade{
+                Id = unidadePosicaoAntigo.Id,
+                Pai = unidadePosicaoNovo.NovoPai,
+                Filho = unidadePosicaoNovo.Filho,
+                Posicao = novaPosicao
+            };
+
+            _unidades.ReplaceOne(u => u.Id == id, objetoMoverNovo);
+            int qtdElementosMoverPai = 0;
+
+            foreach(var item in unidadesUpd){
+                qtdElementosMoverPai++;
+                Unidade objetoFilhoMoverNovo = new Unidade{
+                    Id = item.Id,
+                    Pai = item.Pai,
+                    Filho = item.Filho,
+                    Posicao = objetoMoverNovo.Posicao+"-"+qtdElementosMoverPai
+                };
+
+                _unidades.ReplaceOne(unid => unid.Id == objetoFilhoMoverNovo.Id, objetoFilhoMoverNovo);
+            } 
+        }
+
         public void RemoveNo(Unidade unidade){
             var unidadesDel = _unidades.Find(u => u.Pai == unidade.Filho).ToList();
             unidadesDel.Add(unidade);
