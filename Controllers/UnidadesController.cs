@@ -30,5 +30,20 @@ namespace mongotree.Controllers
 
             return Ok();
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(string id)
+        {
+            var unidade = _unidadeDAO.Get(id);
+
+            if (unidade == null)
+            {
+                return NotFound();
+            }
+
+            _unidadeDAO.RemoveNo(unidade);
+
+            return NoContent();
+        }
     }
 }

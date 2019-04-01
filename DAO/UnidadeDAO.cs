@@ -23,6 +23,11 @@ namespace mongotree.DAO
             return _unidades.Find(unidade => true).ToList();
         }
 
+        public Unidade Get(string id)
+        {
+            return _unidades.Find<Unidade>(u => u.Id == id).FirstOrDefault();
+        }
+
         public void AdicionarNo(UnidadeDTO unidade)
         {
             var elementoPaiFilho = _unidades.Find(u => u.Filho == unidade.Pai).ToList();
@@ -41,8 +46,12 @@ namespace mongotree.DAO
             _unidades.InsertOne(novaUnidade);          
         }
 
-        public void RemoveNo(){
-
+        public void RemoveNo(Unidade unidade){
+            var unidadesDel = _unidades.Find(u => u.Pai == unidade.Filho).ToList();
+            unidadesDel.Add(unidade);
+            foreach(var item in unidadesDel){
+                _unidades.DeleteOne(unid => unid.Id == item.Id);
+            }
         }
 
         public void UpdateNo(){
