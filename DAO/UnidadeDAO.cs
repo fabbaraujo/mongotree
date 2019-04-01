@@ -54,8 +54,28 @@ namespace mongotree.DAO
             }
         }
 
-        public void UpdateNo(){
-            
+        public void UpdateNo(string id, Unidade unidadeNovo, Unidade unidadeAntigo){
+            var unidadesUpd = _unidades.Find(u => u.Pai == unidadeAntigo.Filho).ToList();
+
+            Unidade objetoFilhoNovo = new Unidade{
+                Id = unidadeAntigo.Id,
+                Pai = unidadeAntigo.Pai,
+                Filho = unidadeNovo.Filho,
+                Posicao = unidadeAntigo.Posicao
+            };
+
+            _unidades.ReplaceOne(u => u.Id == id, objetoFilhoNovo);
+
+            foreach(var item in unidadesUpd){
+                Unidade objetoPaiNovo = new Unidade{
+                    Id = item.Id,
+                    Pai = unidadeNovo.Filho,
+                    Filho = item.Filho,
+                    Posicao = item.Posicao
+                };
+
+                _unidades.ReplaceOne(unid => unid.Id == objetoPaiNovo.Id, objetoPaiNovo);
+            }
         }
     }
 }
