@@ -22,9 +22,28 @@ namespace mongotree.Controllers
             return _unidadeDAO.Get();
         }
 
+        [HttpGet("nivel/{nivel}")]
+        public ActionResult<List<Unidade>> GetNivel(int nivel)
+        {
+            return _unidadeDAO.GetNivel(nivel);
+        }
+
+        [HttpGet("filhos/{pai}")]
+        public ActionResult<List<Unidade>> GetFilhos(string pai)
+        {
+            //proximo nivel a partir do pai
+            return _unidadeDAO.GetFilhos(pai);
+        }
+
         [HttpPost("adicionarNo")]
         public ActionResult<Unidade> AdicionarNo(UnidadeDTO unidade)
         {
+            /*
+                {
+                    "Filho": "Equipe 02",
+                    "Pai": "Gerencia de Teste 01"
+                }
+             */
             
             _unidadeDAO.AdicionarNo(unidade);
 
@@ -36,6 +55,7 @@ namespace mongotree.Controllers
         {//ENVIA SÓ O FILHO NO JSON BODY
         //VALIDAR NA BLL SOBRE O PRIMEIRO NÓ - PREFEITURA
         /*
+            "id"
             "Filho": "Diretoria de Urbanismo"
          */
             var unidade = _unidadeDAO.Get(id);

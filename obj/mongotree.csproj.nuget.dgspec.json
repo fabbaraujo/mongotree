@@ -1,0 +1,72 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/cpd/PREFEITURA/mongotree/mongotree.csproj": {}
+  },
+  "projects": {
+    "/home/cpd/PREFEITURA/mongotree/mongotree.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/cpd/PREFEITURA/mongotree/mongotree.csproj",
+        "projectName": "mongotree",
+        "projectPath": "/home/cpd/PREFEITURA/mongotree/mongotree.csproj",
+        "packagesPath": "/home/cpd/.nuget/packages/",
+        "outputPath": "/home/cpd/PREFEITURA/mongotree/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/home/cpd/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.1, )",
+              "autoReferenced": true
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.8.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[4.0.1, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

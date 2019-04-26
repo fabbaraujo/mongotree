@@ -28,6 +28,17 @@ namespace mongotree.DAO
             return _unidades.Find<Unidade>(u => u.Id == id).FirstOrDefault();
         }
 
+        public List<Unidade> GetNivel(int nivel)
+        {
+            return _unidades.Find(u => u.Posicao.Length  == nivel).ToList();
+        }
+        public List<Unidade> GetFilhos(string pai)
+        {
+            var filhosEncontrados = _unidades.Find(p => p.Pai == pai).ToList();
+
+            return filhosEncontrados;
+        }
+
         public void AdicionarNo(UnidadeDTO unidade)
         {
             var elementoPaiFilho = _unidades.Find(u => u.Filho == unidade.Pai).ToList();
