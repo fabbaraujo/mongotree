@@ -4,6 +4,7 @@ using mongotree.Models;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using mongotree.DTO;
+using System.Text.RegularExpressions;
 
 namespace mongotree.DAO
 {
@@ -29,8 +30,19 @@ namespace mongotree.DAO
         }
 
         public List<Unidade> GetNivel(int nivel)
-        {
-            return _unidades.Find(u => u.Posicao.Length  == nivel).ToList();
+        {            
+            var todasUnidades = _unidades.Find(unidade => true).ToList();
+            
+            List<Unidade> unidadesNivel = new List<Unidade>();
+
+            foreach(var item in todasUnidades){
+                var count = Regex.Matches(item.Posicao, "-").Count();
+                if(count == nivel-1){
+                    unidadesNivel.Add(item);
+                }
+            }
+
+            return unidadesNivel;
         }
         public List<Unidade> GetFilhos(string pai)
         {
